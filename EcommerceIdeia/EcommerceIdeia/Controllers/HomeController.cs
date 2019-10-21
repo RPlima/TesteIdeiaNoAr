@@ -58,6 +58,18 @@ namespace EcommerceIdeia.Controllers
                     CarrinhoDAO.CadastrarItem(carrinho);
 
                 }
+                else
+                {
+                     carrinho = new Carrinho
+                    {
+                        Produto = produto,
+                        quantidade = 1,
+                        valor = produto.preco,
+                        carrinhoGuid = Sessao.RetornarCarrinhoId()
+                    };
+                    CarrinhoDAO.CadastrarItem(carrinho);
+
+                }
             }
             else
             {
@@ -71,6 +83,7 @@ namespace EcommerceIdeia.Controllers
                 CarrinhoDAO.CadastrarItem(carrinho);
 
             }
+
             ValorCar();
             return RedirectToAction("CarrinhoCompras", "Home");
         }

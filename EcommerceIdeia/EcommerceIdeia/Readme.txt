@@ -14,6 +14,6 @@ decidi que o padrão de projeto seria o MVC pois me sinto mais confortável em p
     acaba fugindo um pouco do padrão MVC. A mesma coisa se aplica na etapa de finalizar o carrinho, fazendo com que o carrinho totalize um valor de R$ 50,00 ou mais.
    -Utilização dos botões +/- na parte do carrinho. Acredito que com JS teria uma melhor performance e talvez uma apresentação melhor da regra da quantidade dos mesmo itens no carrinho.
     A mesma coisa se aplicaria na etapa de calcular o valor total.
-   
+   - Adicionar mais de um produto no carrinho. Ao tentar executar isso, para poder adequar, tive que adicionar uma quantidade considerável de else e if para poder resolver o problema.
 
     
