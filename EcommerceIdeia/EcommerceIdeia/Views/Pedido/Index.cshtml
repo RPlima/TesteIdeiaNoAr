@@ -1,0 +1,31 @@
+﻿@using EcommerceIdeia.Models
+@model List<Pedido>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="-ms-grid-column-align: center ">
+    @foreach (Pedido pedidoCadastrado in Model)
+    {
+    <div class="card border-primary mb-3" style="max-width: 30rem; text-align: center; margin-left: 20px; margin-top: 20px">
+        <div class="card-header"><b>@pedidoCadastrado.idPedido</b></div>
+
+        @foreach (var item in pedidoCadastrado.Carrinhos)
+        {
+        <div class="card-body">
+            <p class="card-text" style="width: 220px">Nome do Produto: @item.Produto.nomeProduto.</p>
+            <p class="card-text" style="width: 220px">Valor Unitário: @item.Produto.preco.ToString("C2")</p>
+            <p class="card-text" style="width: 220px">Qtde: @item.quantidade.</p>
+        </div>
+        }
+
+        <ul class="list-group list-group-flush" style="align-self: center">
+            <li class="list-group-item">
+                <b>@pedidoCadastrado.valorTotal.ToString("C2")</b>
+            </li>
+        </ul>
+    </div>
+    }
+</div>
+

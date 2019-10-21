@@ -1,0 +1,23 @@
+﻿@using EcommerceIdeia.Models
+@model List<Produto>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="-ms-grid-column-align: center ">
+    @foreach (Produto produtoCadastrado in Model)
+    {
+        <div class="card border-primary mb-3" style="max-width: 30rem; text-align: center; margin-left: 20px; margin-top: 20px">
+            <div class="card-header"><b>@produtoCadastrado.nomeProduto</b></div>
+
+            <ul class="list-group list-group-flush" style="align-self: center">
+                <li class="list-group-item">
+                    <b>@produtoCadastrado.preco.ToString("C2")</b>
+                    <a href='@Url.Action("AdicionarAoCarrinho", "Home", new { id = produtoCadastrado.idProduto })'>Add Carrinho</a>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

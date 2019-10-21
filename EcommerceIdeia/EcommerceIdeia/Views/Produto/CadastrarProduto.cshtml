@@ -1,0 +1,38 @@
+﻿@using EcommerceIdeia.Models
+@model Produto
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-4">
+    @using (Html.BeginForm("CadastrarProduto", "Produto", FormMethod.Post, new { @class = "form-group", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+        <fieldset>
+            <legend>Cadastrar Produto</legend>
+
+            @Html.LabelFor(Model => Model.nomeProduto)
+            @Html.ValidationMessageFor(Model => Model.nomeProduto, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.nomeProduto,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Nome do Produto"
+
+                    })<br />
+            @Html.LabelFor(Model => Model.preco)
+            @Html.ValidationMessageFor(Model => Model.preco, null, new { @class = "text-danger" })<br />
+            @Html.TextBoxFor(Model => Model.preco,
+                    new
+                    {
+                        @class = "form-control",
+                        @placeholder = "Preço em R$",
+                        @type = "numeric"
+                    })<br />
+
+        </fieldset>
+        <input type="submit" value="Cadastrar" class="btn btn-success" />
+    }
+</div>
+

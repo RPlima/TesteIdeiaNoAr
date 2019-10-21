@@ -1,0 +1,38 @@
+﻿@using EcommerceIdeia.Models
+@model List<Produto>
+@{
+
+}
+
+
+<div>
+    <p>
+        <h2>Gerenciamento de Produtos</h2>
+    </p>
+    @*<a href="~/Views/Produto/Cadastrar"> Cadastrar Produto </a>*@
+
+    @* Link em MVC | Razor *@
+
+
+
+    <div>
+        <table class="table table-hover">
+            <tr class="table-secondary">
+                <th>Nome</th>
+                <th>Preço</th>
+            </tr>
+
+            @foreach (Produto produtoCadastrado in Model)
+            {
+                <tr>
+                    <td>@produtoCadastrado.nomeProduto</td>
+                    <td>R$@produtoCadastrado.preco</td>
+                </tr>
+
+
+            }
+
+        </table>
+
+    </div>
+</div>

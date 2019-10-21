@@ -1,0 +1,76 @@
+﻿@using EcommerceIdeia.Models
+@model List<Carrinho>
+@{
+    ViewBag.Title = "CarrinhoCompras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    decimal subtotal = 0;
+    var total = TempData["ValorTotal"];
+    decimal.TryParse(total.ToString(), out decimal TotalInteiro);
+}
+
+<h2>CarrinhoCompras</h2>
+
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th>SubTotal</th>
+    </tr>
+
+    @foreach (Carrinho item in Model)
+    {
+        <tr>
+            <td>@item.Produto.nomeProduto</td>
+            <td>
+                @Html.ActionLink("-", "RemoverQtde", "Home", new { id = item.Produto.idProduto }, new { @class = "btn btn-secondary" })
+                @item.quantidade
+                @if (item.quantidade < 10)
+                {
+                    @Html.ActionLink("+", "AddQtde", "Home", new { id = item.Produto.idProduto }, new { @class = "btn btn-primary" })
+                }
+                else
+                {
+                    <td class="alert-danger">Quantidade Limite Atingida</td>
+                }
+            </td>
+            <td>@item.valor.ToString("C2")</td>
+
+            @{
+                subtotal = item.quantidade * item.valor;
+
+            }
+
+            <td>@subtotal.ToString("C2")</td>
+        </tr>
+    }
+</table>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+    <div>Resumo do pedido</div>
+    <div>
+        <h4>Total: R$@total.ToString()</h4>
+        <p>
+            @if (TempData["QtdeTotal"] != null)
+            {
+                var qtde = TempData["QtdeTotal"];
+                if (!qtde.Equals(0))
+                {
+                <p> <b style="color: dodgerblue">@qtde.ToString()</b> produto(s) selecionados</p>
+                }
+
+            }
+            </p>
+            <p> Para continuar clique abaixo.</p>
+            @if (TotalInteiro >= 50)
+            {
+                @Html.ActionLink("Finalizar Compra", "FinalizarCarrinho", "Pedido",null, new { @class = "btn btn-success" })
+            }
+            else
+            {
+                <h4 class="bg-danger">Minimo para Fechar a compra: R$ 50,00</h4>
+            }
+        </div>
+    </div>
